@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router";
-import UserService from "../services/UserService";
+import { TweetServices } from "../services/TweetServices";
 
 import { MdClose } from "react-icons/md";
 
@@ -16,13 +15,12 @@ import {
 } from "@mui/material";
 
 export default function RegisterModal() {
-  const history = useHistory();
   const [open, setOpen] = useState(false);
 
   const [firstName, setFirstName] = useState(null);
   const [lastName, setLastName] = useState(null);
   const [email, setEmail] = useState(null);
-  const [username, setUsername] = useState(null);
+  const [userName, setUserName] = useState(null);
   const [password, setPassword] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState(null);
 
@@ -33,7 +31,7 @@ export default function RegisterModal() {
     setFirstName(null);
     setLastName(null);
     setEmail(null);
-    setUsername(null);
+    setUserName(null);
     setPassword(null);
     setConfirmPassword(null);
     setError(null);
@@ -46,7 +44,7 @@ export default function RegisterModal() {
       !firstName ||
       !lastName ||
       !email ||
-      !username ||
+      !userName ||
       !password ||
       !confirmPassword
     ) {
@@ -66,20 +64,16 @@ export default function RegisterModal() {
     return true;
   };
 
-  const saveUserDetails = () => {
-    // // e.preventDefault();
+  const saveUserDetails = async () => {
     if (handleValidation()) {
-      let user = { firstName, lastName, email, username, password };
-      console.log(user);
-      //   UserService.saveUser(user)
-      //     .then((response) => {
-      //       setMessage("Registered successfully");
-      //     })
-      //     .catch((err) => {
-      //       if (err.message == "Request failed with status code 500") {
-      //         setError("Login Id and Email Already Exist");
-      //       }
-      //     });
+      let user = { firstName, lastName, email, userName, password };
+      const response = await TweetServices.saveUserAPI(user);
+      if (!response.error) {
+        setMessage("Registered successfully");
+      } else {
+        console.log(response.error);
+        setMessage(response.error);
+      }
     }
   };
 
@@ -116,6 +110,14 @@ export default function RegisterModal() {
           </div>
           <div className="col">
             <DialogTitle className="step-one">Step 1 of 1</DialogTitle>
+            <span
+              className="dialog-message"
+              style={{
+                color: message != "Registered successfully" ? "red" : "green",
+              }}
+            >
+              {message}
+            </span>
           </div>
         </div>
 
@@ -193,14 +195,14 @@ export default function RegisterModal() {
                     id="outlined-basic"
                     label="User Id"
                     variant="outlined"
-                    onChange={(e) => setUsername(e.target.value)}
+                    onChange={(e) => setUserName(e.target.value)}
                     error={
                       error == "Field cannot be blank" &&
-                      (!username || username == "")
+                      (!userName || userName == "")
                     }
                     helperText={
                       error == "Field cannot be blank" &&
-                      (!username || username == "")
+                      (!userName || userName == "")
                         ? "Field cannot be blank"
                         : null
                     }
