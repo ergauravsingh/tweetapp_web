@@ -71,7 +71,6 @@ export default function RegisterModal() {
       if (!response.error) {
         setMessage("Registered successfully");
       } else {
-        console.log(response.error);
         setMessage(response.error);
       }
     }

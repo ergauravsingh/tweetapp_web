@@ -39,19 +39,24 @@ export default function LoginModal() {
     return true;
   };
 
-  const saveUserDetails = async () => {
-    // // e.preventDefault();
+  const loginUser = async () => {
     if (handleValidation()) {
       let user = { userName, password };
       console.log(user);
       const response = await TweetServices.loginAPI(user);
       if (!response.error) {
         setMessage(null);
-        localStorage.setItem("token", response.data?.jwt);
+        localStorage.setItem("token", "Bearer " + response.data?.jwt);
         localStorage.setItem("userName", response.data?.username);
+        localStorage.setItem(
+          "displayName",
+          response.data?.firstName + " " + response.data?.lastName
+        );
         history.push("/home");
+        // history.push("/home");
       } else {
-        setMessage(response.error);
+        console.log(response.error);
+        if (typeof response.error == "string") setMessage(response.error);
       }
     }
   };
@@ -97,7 +102,7 @@ export default function LoginModal() {
               <span
                 className="dialog-message"
                 style={{
-                  color: message != "Registered successfully" ? "red" : "green",
+                  color: "red",
                 }}
               >
                 {message}
@@ -155,7 +160,7 @@ export default function LoginModal() {
             variant="contained"
             className="create-account-btn"
             style={{ textTransform: "none" }}
-            onClick={saveUserDetails}
+            onClick={loginUser}
           >
             Login
           </Button>
