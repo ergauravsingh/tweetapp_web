@@ -1,0 +1,140 @@
+#tweetapp {
+  height: 100%;
+  min-height: 100vh;
+}
+.twitter-spinner {
+  position: fixed; /* or absolute */
+  top: 50%;
+  left: 50%;
+}
+.blue-btn {
+  background: #1da1f2 !important;
+  color: #fff !important;
+  border: 0 !important;
+}
+.blue-btn:hover {
+  background: #1a91da !important;
+}
+.white-btn:hover {
+  background: #e8f5fe !important;
+}
+
+.landing-page {
+  height: 100%;
+  min-height: 100vh;
+}
+.landing-page .landing-page-left {
+  padding-left: 13% !important;
+  padding-top: 13% !important;
+  background-color: #1da1f2;
+}
+
+.landing-page .landing-left-content {
+  color: white;
+  margin: 25px;
+  font-size: 25px;
+  font-family: arial;
+}
+.landing-page .landing-left-content .landing-left-content-icon {
+  margin: 2%;
+  font-weight: 900;
+}
+
+.landing-page .landing-page-right .right-content .landing-box {
+  margin-left: 22%;
+  margin-top: 22%;
+}
+.landing-page .landing-page-right .right-content .landing-twitter-logo {
+  color: rgb(29, 161, 242);
+  font-size: 36px;
+}
+.landing-page .landing-page-right .right-content .see-whats-happening {
+  font-size: 25px;
+  font-weight: bolder;
+}
+.landing-page .landing-page-right .right-content .landing-content-bottom {
+  margin: 2%;
+}
+.landing-page .landing-page-right .right-content .join-twitter-today {
+  font-weight: bolder;
+  font-size: 17px;
+}
+
+.landing-page .landing-page-right .right-content .landing-buttons button {
+  height: 40px;
+  width: 370px;
+  border-radius: 25px;
+  outline: none;
+  font-weight: bolder;
+  font-size: 15px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.sign-up-dialog-box {
+  min-height: 400px !important;
+}
+.sign-up-dialog-box .sign-up-close-btn {
+  background-color: #e0e0e000;
+  box-shadow: none;
+}
+.sign-up-dialog-box .sign-up-close-icon {
+  width: 36px;
+  height: 36px;
+}
+.sign-up-dialog-box .step-one {
+  font-size: 20px;
+  font-weight: 700;
+  font-family: arial;
+  color: #0e0e0ef2;
+}
+.sign-up-dialog-box .dialog-message {
+  font-size: 15px;
+  font-family: arial;
+  margin-left: 38%;
+  color: #0e0e0ef2;
+}
+.sign-up-dialog-box .create-your-account {
+  font-size: 31px;
+  font-weight: 700;
+  font-family: arial;
+  color: #0e0e0ef2;
+  padding-left: 5px;
+}
+.sign-up-dialog-box .sign-up-form {
+  padding-left: 80px;
+  padding-right: 80px;
+}
+.sign-up-dialog-box .sign-up-form .input-box {
+  width: 95%;
+}
+.sign-up-dialog-box .sign-up-form .input-box-half {
+  width: 46%;
+}
+.sign-up-dialog-box .sign-up-form .form-group {
+  margin-top: 5%;
+  padding-bottom: 6px;
+  padding-top: 6px;
+}
+.sign-up-dialog-box .create-account {
+  padding-right: 28%;
+}
+.sign-up-dialog-box .create-account-btn {
+  background: #1da1f2 !important;
+  color: #fff !important;
+  border: 0 !important;
+  height: 40px;
+  width: 370px;
+  border-radius: 25px;
+  outline: none;
+  font-weight: bolder;
+  font-size: 15px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.sign-up-dialog-box .create-account-btn:hover {
+  background: #1a91da !important;
+}
+
+.tweetdecor {
+  background-color: #9b1b30;
+}
