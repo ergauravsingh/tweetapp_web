@@ -1,5 +1,3 @@
-import axios from "axios";
-import React from "react";
 import { createRequest, HTTP_METHODS } from "./ServiceInvoker";
 
 const baseUrl = "http://localhost:9085/api/v1.0/tweets";
@@ -21,5 +19,27 @@ export const TweetServices = {
       console.error("Login Failed");
       return { error: "[loginAPI] FAILED" };
     }
+  },
+
+  getAllTweetsAPI(config) {
+    return createRequest(HTTP_METHODS.GET, baseUrl + "/all", null, config);
+  },
+
+  createTweetAPI(tweet, config) {
+    if (tweet) {
+      return createRequest(
+        HTTP_METHODS.POST,
+        baseUrl + "/create",
+        tweet,
+        config
+      );
+    } else {
+      console.error("Create Tweet Api Failed");
+      return { error: "[createTweetAPI] FAILED" };
+    }
+  },
+
+  deleteTweetAPI(id, config) {
+    return createRequest(HTTP_METHODS.DELETE, baseUrl + "/" + id, null, config);
   },
 };
