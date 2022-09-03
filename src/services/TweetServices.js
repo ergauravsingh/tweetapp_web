@@ -42,4 +42,36 @@ export const TweetServices = {
   deleteTweetAPI(id, config) {
     return createRequest(HTTP_METHODS.DELETE, baseUrl + "/" + id, null, config);
   },
+
+  getRepliesAPI(tweetId, config) {
+    return createRequest(
+      HTTP_METHODS.GET,
+      baseUrl + "/" + tweetId + "/reply/all",
+      null,
+      config
+    );
+  },
+
+  deleteReplyAPI(replyId, config) {
+    return createRequest(
+      HTTP_METHODS.DELETE,
+      baseUrl + "/reply/" + replyId,
+      null,
+      config
+    );
+  },
+
+  createReplyAPI(reply, config) {
+    if (reply) {
+      return createRequest(
+        HTTP_METHODS.POST,
+        baseUrl + "/reply",
+        reply,
+        config
+      );
+    } else {
+      console.error("Create Reply Api Failed");
+      return { error: "[createReplyAPI] FAILED" };
+    }
+  },
 };
