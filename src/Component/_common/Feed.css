@@ -1,0 +1,12 @@
+.like-button:hover {
+  background-color: #e495ae;
+  color: #e0245e;
+  border-radius: 55px;
+}
+
+.post-body {
+  border-top: 1px solid rgb(191, 191, 191);
+  border-bottom: 1px solid rgb(191, 191, 191);
+  padding-top: 2%;
+  padding-bottom: 2%;
+}

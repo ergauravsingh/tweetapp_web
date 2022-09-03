@@ -1,0 +1,15 @@
+.MuiInputBase-root::before {
+  border: 0px !important;
+}
+.MuiInputBase-root::after {
+  border: 0px !important;
+}
+.MuiFormControl-root {
+  margin-left: 2% !important;
+}
+.input-col {
+  margin-left: 6%;
+}
+.input-col textarea {
+  font-size: 20px !important;
+}
