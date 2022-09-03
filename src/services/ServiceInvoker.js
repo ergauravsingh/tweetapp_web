@@ -1,5 +1,4 @@
-import axios from "axios";
-import { TweetAxios, addHeaders } from "./AxiosConfig";
+import { TweetAxios } from "./AxiosConfig";
 
 export const HTTP_METHODS = {
   GET: "GET",

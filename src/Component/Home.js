@@ -1,29 +1,27 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useHistory } from "react-router";
-import Sidebar from "./_common/Sidebar";
+import { getConnectedComponent } from "../store";
+import LeftSideBar from "./_common/LeftSideBar";
+import RightSideBar from "./_common/RightSideBar";
 import Feeds from "./_common/Feeds";
 import { Container } from "@mui/material";
 import { TweetServices } from "../services/TweetServices";
 import TweetBox from "./_common/TweetBox";
 import TweetAppBar from "./_common/AppBar";
 import { sortTweets } from "../util/TemplateFormatter";
-
 import Spinner from "./Spinner";
-export default function Home() {
+
+const Home = ({ tweetsList, setTweetsList, resetStore }) => {
   const history = useHistory();
 
-  const [tweetsList, setTweetsList] = useState(null);
-  const [loggedInUser, setLoggedInUser] = useState({
-    userName: localStorage.getItem("userName"),
-    displayName: localStorage.getItem("displayName"),
-  });
-  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [token] = useState(localStorage.getItem("token"));
   const [isloggedIn, setIsLoggedIn] = useState(null);
 
   const logOut = () => {
     setIsLoggedIn(false);
     localStorage.clear();
+    resetStore();
     history.push("/");
   };
 
@@ -54,14 +52,46 @@ export default function Home() {
   };
 
   const deleteTweet = async (tweetId) => {
-    setIsLoggedIn(false);
     const response = await TweetServices.deleteTweetAPI(tweetId, {
       headers: { Authorization: token },
     });
     if (!response.error) {
       await getAllTweets();
     }
-    setIsLoggedIn(true);
+  };
+
+  const createReply = async (reply) => {
+    const response = await TweetServices.createReplyAPI(reply, {
+      headers: { Authorization: token },
+    });
+    if (!response.error) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const getReplies = async (tweetId) => {
+    const response = await TweetServices.getRepliesAPI(tweetId, {
+      headers: { Authorization: token },
+    });
+    if (!response.error) {
+      return response.data;
+    } else {
+      console.log("Get replies api failed");
+      return null;
+    }
+  };
+
+  const deleteReply = async (replyId) => {
+    const response = await TweetServices.deleteReplyAPI(replyId, {
+      headers: { Authorization: token },
+    });
+    if (!response.error) {
+      return true;
+    } else {
+      return false;
+    }
   };
 
   useEffect(() => {
@@ -74,41 +104,42 @@ export default function Home() {
         <Container disableGutters maxWidth={false}>
           <div className="row">
             <div className="col-2 feeds-left-part">
-              <Sidebar></Sidebar>
+              <LeftSideBar></LeftSideBar>
             </div>
             <div className="col feeds-center-part">
               <div className="row app-bar">
-                <TweetAppBar
-                  displayName={loggedInUser?.displayName}
-                ></TweetAppBar>
+                <TweetAppBar logOut={logOut}></TweetAppBar>
               </div>
               <div className="row tweet-box">
-                <div className="col-12">
+                <div className="col-12" style={{ padding: "3%" }}>
                   <TweetBox createTweet={createTweet} />
                 </div>
               </div>
               <div className="row tweets">
-                {tweetsList.length > 0 ? (
-                  <Feeds
-                    feeds={tweetsList}
-                    user={loggedInUser}
-                    deleteTweet={deleteTweet}
-                  ></Feeds>
-                ) : (
-                  <div>No Tweets found</div>
-                )}
+                <div className="col-12">
+                  {tweetsList.length > 0 ? (
+                    <Feeds
+                      deleteTweet={deleteTweet}
+                      getReplies={getReplies}
+                      deleteReply={deleteReply}
+                      createReply={createReply}
+                    ></Feeds>
+                  ) : (
+                    <div>No Tweets found</div>
+                  )}
+                </div>
               </div>
             </div>
             <div className="col-2 feeds-right-part">
-              <Sidebar></Sidebar>
+              <RightSideBar></RightSideBar>
             </div>
           </div>
         </Container>
       ) : (
-        <Container>
-          <Spinner></Spinner>
-        </Container>
+        <Spinner></Spinner>
       )}
     </div>
   );
-}
+};
+
+export default getConnectedComponent(Home);

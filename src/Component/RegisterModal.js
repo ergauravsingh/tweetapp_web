@@ -57,7 +57,7 @@ export default function RegisterModal() {
       return false;
     }
 
-    if (password != confirmPassword) {
+    if (password !== confirmPassword) {
       setError("Password and Confirm Password do not match");
       return false;
     }
@@ -112,7 +112,7 @@ export default function RegisterModal() {
             <span
               className="dialog-message"
               style={{
-                color: message != "Registered successfully" ? "red" : "green",
+                color: message !== "Registered successfully" ? "red" : "green",
               }}
             >
               {message}
@@ -133,34 +133,34 @@ export default function RegisterModal() {
                   <TextField
                     className="input-box-half"
                     style={{ marginRight: "3%" }}
-                    id="outlined-basic"
+                    id="firstName"
                     label="First Name"
                     variant="outlined"
                     onChange={(e) => setFirstName(e.target.value)}
                     error={
-                      error == "Field cannot be blank" &&
-                      (!firstName || firstName == "")
+                      error === "Field cannot be blank" &&
+                      (!firstName || firstName === "")
                     }
                     helperText={
-                      error == "Field cannot be blank" &&
-                      (!firstName || firstName == "")
+                      error === "Field cannot be blank" &&
+                      (!firstName || firstName === "")
                         ? "Field cannot be blank"
                         : null
                     }
                   />
                   <TextField
                     className="input-box-half"
-                    id="outlined-basic"
+                    id="lastName"
                     label="Last Name"
                     variant="outlined"
                     onChange={(e) => setLastName(e.target.value)}
                     error={
-                      error == "Field cannot be blank" &&
-                      (!lastName || lastName == "")
+                      error === "Field cannot be blank" &&
+                      (!lastName || lastName === "")
                     }
                     helperText={
-                      error == "Field cannot be blank" &&
-                      (!lastName || lastName == "")
+                      error === "Field cannot be blank" &&
+                      (!lastName || lastName === "")
                         ? "Field cannot be blank"
                         : null
                     }
@@ -169,20 +169,20 @@ export default function RegisterModal() {
                 <div className="form-group">
                   <TextField
                     className="input-box"
-                    id="outlined-basic"
+                    id="email"
                     label="Email"
                     variant="outlined"
                     onChange={(e) => setEmail(e.target.value)}
                     error={
-                      (error == "Field cannot be blank" &&
-                        (!email || email == "")) ||
-                      error == "Please enter a valid email"
+                      (error === "Field cannot be blank" &&
+                        (!email || email === "")) ||
+                      error === "Please enter a valid email"
                     }
                     helperText={
-                      error == "Field cannot be blank" &&
-                      (!email || email == "")
+                      error === "Field cannot be blank" &&
+                      (!email || email === "")
                         ? "Field cannot be blank"
-                        : error == "Please enter a valid email"
+                        : error === "Please enter a valid email"
                         ? "Please enter a valid email"
                         : null
                     }
@@ -191,17 +191,17 @@ export default function RegisterModal() {
                 <div className="form-group">
                   <TextField
                     className="input-box"
-                    id="outlined-basic"
+                    id="userName"
                     label="User Id"
                     variant="outlined"
                     onChange={(e) => setUserName(e.target.value)}
                     error={
-                      error == "Field cannot be blank" &&
-                      (!userName || userName == "")
+                      error === "Field cannot be blank" &&
+                      (!userName || userName === "")
                     }
                     helperText={
-                      error == "Field cannot be blank" &&
-                      (!userName || userName == "")
+                      error === "Field cannot be blank" &&
+                      (!userName || userName === "")
                         ? "Field cannot be blank"
                         : null
                     }
@@ -210,18 +210,18 @@ export default function RegisterModal() {
                 <div className="form-group">
                   <TextField
                     className="input-box"
-                    id="outlined-basic"
+                    id="password"
                     label="Password"
                     type="password"
                     variant="outlined"
                     onChange={(e) => setPassword(e.target.value)}
                     error={
-                      error == "Field cannot be blank" &&
-                      (!password || password == "")
+                      error === "Field cannot be blank" &&
+                      (!password || password === "")
                     }
                     helperText={
-                      error == "Field cannot be blank" &&
-                      (!password || password == "")
+                      error === "Field cannot be blank" &&
+                      (!password || password === "")
                         ? "Field cannot be blank"
                         : null
                     }
@@ -230,21 +230,21 @@ export default function RegisterModal() {
                 <div className="form-group">
                   <TextField
                     className="input-box"
-                    id="outlined-basic"
+                    id="confirmPassword"
                     label="Confirm Password"
                     type="password"
                     variant="outlined"
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     error={
-                      (error == "Field cannot be blank" &&
-                        (!confirmPassword || confirmPassword == "")) ||
-                      error == "Password and Confirm Password do not match"
+                      (error === "Field cannot be blank" &&
+                        (!confirmPassword || confirmPassword === "")) ||
+                      error === "Password and Confirm Password do not match"
                     }
                     helperText={
-                      error == "Field cannot be blank" &&
-                      (!confirmPassword || confirmPassword == "")
+                      error === "Field cannot be blank" &&
+                      (!confirmPassword || confirmPassword === "")
                         ? "Field cannot be blank"
-                        : error == "Password and Confirm Password do not match"
+                        : error === "Password and Confirm Password do not match"
                         ? "Password and Confirm Password do not match"
                         : null
                     }

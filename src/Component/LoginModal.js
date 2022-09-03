@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
+import { getConnectedComponent } from "../store";
 import { TweetServices } from "../services/TweetServices";
-
 import { MdClose } from "react-icons/md";
-
 import {
   Fab,
   Button,
@@ -14,7 +13,7 @@ import {
   DialogContentText,
 } from "@mui/material";
 
-export default function LoginModal() {
+const LoginModal = (props) => {
   const history = useHistory();
   const [open, setOpen] = useState(false);
 
@@ -42,21 +41,21 @@ export default function LoginModal() {
   const loginUser = async () => {
     if (handleValidation()) {
       let user = { userName, password };
-      console.log(user);
       const response = await TweetServices.loginAPI(user);
       if (!response.error) {
         setMessage(null);
         localStorage.setItem("token", "Bearer " + response.data?.jwt);
-        localStorage.setItem("userName", response.data?.username);
-        localStorage.setItem(
-          "displayName",
+
+        // set store
+        props.setUserName(response.data?.username);
+        props.setDisplayName(
           response.data?.firstName + " " + response.data?.lastName
         );
+
         history.push("/home");
-        // history.push("/home");
       } else {
         console.log(response.error);
-        if (typeof response.error == "string") setMessage(response.error);
+        if (typeof response.error === "string") setMessage(response.error);
       }
     }
   };
@@ -115,17 +114,17 @@ export default function LoginModal() {
                 <div className="form-group">
                   <TextField
                     className="input-box"
-                    id="outlined-basic"
+                    id="username"
                     label="User Id"
                     variant="outlined"
                     onChange={(e) => setUserName(e.target.value)}
                     error={
-                      error == "Field cannot be blank" &&
-                      (!userName || userName == "")
+                      error === "Field cannot be blank" &&
+                      (!userName || userName === "")
                     }
                     helperText={
-                      error == "Field cannot be blank" &&
-                      (!userName || userName == "")
+                      error === "Field cannot be blank" &&
+                      (!userName || userName === "")
                         ? "Field cannot be blank"
                         : null
                     }
@@ -134,18 +133,18 @@ export default function LoginModal() {
                 <div className="form-group">
                   <TextField
                     className="input-box"
-                    id="outlined-basic"
+                    id="password"
                     label="Password"
                     type="password"
                     variant="outlined"
                     onChange={(e) => setPassword(e.target.value)}
                     error={
-                      error == "Field cannot be blank" &&
-                      (!password || password == "")
+                      error === "Field cannot be blank" &&
+                      (!password || password === "")
                     }
                     helperText={
-                      error == "Field cannot be blank" &&
-                      (!password || password == "")
+                      error === "Field cannot be blank" &&
+                      (!password || password === "")
                         ? "Field cannot be blank"
                         : null
                     }
@@ -168,4 +167,6 @@ export default function LoginModal() {
       </Dialog>
     </div>
   );
-}
+};
+
+export default getConnectedComponent(LoginModal);
