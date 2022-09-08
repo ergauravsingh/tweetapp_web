@@ -8,16 +8,83 @@
   font-weight: 900 !important;
   height: 50px !important;
 }
-.sidebar {
-  margin-top: 20px;
-  border-right: 2px solid var(--twitter-background);
-  flex: 0.3;
-  padding: 0px 20px;
-}
+
 .twitter-icon {
-  font-size: 30px !important;
-  color: var(--twitter-color);
-  padding: 20px;
+  color: var(--TweetColor);
+  font-size: 36px;
 }
-@media screen and (max-width: 600px) {
-} ;
+
+/* RIGHT SIDEBAR */
+.trends {
+  background: #f7f9f9;
+  border-radius: 10px;
+  padding: 5%;
+  margin-top: 5%;
+}
+.trends-for-you {
+  font-family: "Segoe UI";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 32px;
+  color: #000000;
+}
+
+.trending-in-germany {
+  font-family: "Segoe UI";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 21px;
+  color: #393b41;
+
+  opacity: 0.6;
+}
+.revolution {
+  font-family: "Segoe UI";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 27px;
+  color: #000000;
+}
+
+.no-of-tweets {
+  font-family: "Segoe UI";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 21px;
+  color: #393b41;
+  opacity: 0.6;
+}
+
+.trends .you-might-like-username {
+  font-family: "Segoe UI";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 24px;
+  color: #000000;
+}
+
+.trends .you-might-like-userid {
+  font-family: "Segoe UI";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  color: #000000;
+  opacity: 0.6;
+}
+
+.trends .black-follow-button {
+  margin-left: 3%;
+  background: #000000;
+  border-radius: 50px;
+  padding: 1px;
+}
+
+.right-sidebar .search-box {
+  background: #eff3f4;
+  border-radius: 31px;
+}

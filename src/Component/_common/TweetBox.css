@@ -12,4 +12,17 @@
 }
 .input-col textarea {
   font-size: 20px !important;
+  font-weight: 525;
+}
+
+.tweetBox .tweet-create-button {
+  height: 40px;
+  width: 75px;
+  border-radius: 20px;
+  font-size: medium;
+  font-weight: bold;
+}
+
+.tweetbox-icons {
+  color: var(--TweetColor);
 }

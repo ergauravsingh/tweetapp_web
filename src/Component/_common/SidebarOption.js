@@ -4,7 +4,7 @@ import "./SidebarOption.css";
 export default function SidebarOption({ active, text, Icon }) {
   return (
     <div className={`sidebaroption ${active && "sidebaroption-active"}`}>
-      <Icon />
+      <Icon className="sidebar-option-icon" />
       <h2>{text}</h2>
     </div>
   );

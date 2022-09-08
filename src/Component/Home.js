@@ -12,11 +12,20 @@ import TweetAppBar from "./_common/AppBar";
 import { sortTweets } from "../util/TemplateFormatter";
 import Spinner from "./Spinner";
 
-const Home = ({ tweetsList, setTweetsList, resetStore }) => {
+const Home = ({
+  tweetsList,
+  setTweetsList,
+  setUserName,
+  setDisplayName,
+  resetStore,
+}) => {
   const history = useHistory();
 
   const [token] = useState(localStorage.getItem("token"));
   const [isloggedIn, setIsLoggedIn] = useState(null);
+
+  setUserName(localStorage.getItem("userName"));
+  setDisplayName(localStorage.getItem("displayName"));
 
   const logOut = () => {
     setIsLoggedIn(false);
@@ -99,42 +108,43 @@ const Home = ({ tweetsList, setTweetsList, resetStore }) => {
   }, [token]);
 
   return (
-    <div className="home-page feeds-center-container">
+    <div
+      className="home-page feeds-center-container"
+      style={{ marginLeft: "4%" }}
+    >
       {isloggedIn ? (
-        <Container disableGutters maxWidth={false}>
-          <div className="row">
-            <div className="col-2 feeds-left-part">
-              <LeftSideBar></LeftSideBar>
+        <div className="row row-sm-12 home-page">
+          <div className="col col-sm-2 feeds-left-part">
+            <LeftSideBar></LeftSideBar>
+          </div>
+          <div className="col col-sm-7 feeds-center-part">
+            <div className="row app-bar">
+              <TweetAppBar logOut={logOut}></TweetAppBar>
             </div>
-            <div className="col feeds-center-part">
-              <div className="row app-bar">
-                <TweetAppBar logOut={logOut}></TweetAppBar>
-              </div>
-              <div className="row tweet-box">
-                <div className="col-12" style={{ padding: "3%" }}>
-                  <TweetBox createTweet={createTweet} />
-                </div>
-              </div>
-              <div className="row tweets">
-                <div className="col-12">
-                  {tweetsList.length > 0 ? (
-                    <Feeds
-                      deleteTweet={deleteTweet}
-                      getReplies={getReplies}
-                      deleteReply={deleteReply}
-                      createReply={createReply}
-                    ></Feeds>
-                  ) : (
-                    <div>No Tweets found</div>
-                  )}
-                </div>
+            <div className="row tweet-box">
+              <div className="col-12">
+                <TweetBox createTweet={createTweet} />
               </div>
             </div>
-            <div className="col-2 feeds-right-part">
-              <RightSideBar></RightSideBar>
+            <div className="row tweets">
+              <div className="col-12" style={{ paddingLeft: "0px" }}>
+                {tweetsList.length > 0 ? (
+                  <Feeds
+                    deleteTweet={deleteTweet}
+                    getReplies={getReplies}
+                    deleteReply={deleteReply}
+                    createReply={createReply}
+                  ></Feeds>
+                ) : (
+                  <div>No Tweets found</div>
+                )}
+              </div>
             </div>
           </div>
-        </Container>
+          <div className="col feeds-right-part">
+            <RightSideBar></RightSideBar>
+          </div>
+        </div>
       ) : (
         <Spinner></Spinner>
       )}

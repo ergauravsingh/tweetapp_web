@@ -2,7 +2,6 @@ import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import LandingView from "./Component/LandingView";
 import Home from "./Component/Home";
-import { Container } from "@mui/material";
 import { Provider } from "react-redux";
 import { useStore, getConnectedComponent } from "./store";
 
@@ -14,14 +13,14 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Container disableGutters maxWidth={false}>
+      <>
         <Switch>
           <Provider store={store}>
             <Route path="/" exact component={LandingViewContainer}></Route>
             <Route path="/home" exact component={HomeContainer}></Route>
           </Provider>
         </Switch>
-      </Container>
+      </>
     </BrowserRouter>
   );
 }

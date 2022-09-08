@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+:root {
+  --TweetColor: #1da1f2;
+  --AppBorders: 1px solid rgb(191, 191, 191);
+}

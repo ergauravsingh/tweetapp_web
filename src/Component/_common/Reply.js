@@ -8,8 +8,13 @@ import {
   MdRepeat,
   MdVerified,
 } from "react-icons/md";
+import { BsDot } from "react-icons/bs";
 import { IconButton } from "@mui/material";
-import { formatAMPM, formatDayMonth } from "../../util/TemplateFormatter";
+import {
+  formatAMPM,
+  formatDayMonth,
+  getTimeDifferenceFromNow,
+} from "../../util/TemplateFormatter";
 import TweetTooltip from "./TweetTooltip";
 
 export default function Reply({
@@ -28,17 +33,24 @@ export default function Reply({
   return (
     <div className="post">
       <div className="post-body row">
-        <div className="col-1 post-avatar">
-          <FaUserCircle
-            className="post__avatar"
-            style={{ fontSize: "40px", color: "grey" }}
-          />
-        </div>
-        <div className="col post-content">
+        <div className="col col-md-11 post-content">
           <div className="row post-content-row-username">
-            <div className="col">
+            <div className="col-1 post-avatar">
+              <FaUserCircle
+                className="post__avatar"
+                style={{ fontSize: "40px", color: "lightgrey" }}
+              />
+            </div>
+            <div className="col" style={{ padding: "0px" }}>
               <span className="display-name">@{userName} </span>
-              <MdVerified className="display-icon post__badge" />
+              <MdVerified className="display-icon" />
+              <span>
+                {" "}
+                <BsDot />{" "}
+              </span>
+              <span>{getTimeDifferenceFromNow(reply_created_at)}</span>
+              <br />
+              <span className=" replying-to">Replying to @{replying_to}</span>
             </div>
             <div className="col-1">
               <TweetTooltip
@@ -49,29 +61,43 @@ export default function Reply({
               ></TweetTooltip>
             </div>
           </div>
-          <div className="row replying-to">Replying to @ {replying_to}</div>
           <div className="row post-content-row-tweet">
-            <p>{reply_message}</p>
+            <div className="col col-md-12">
+              <span className="tweet-message">{reply_message}</span>
+            </div>
           </div>
+
           <div className="row post-content-row-time">
-            <div className="col-2">{formatAMPM(reply_created_at)}</div>
-            <div className="col-2">{formatDayMonth(reply_created_at)}</div>
+            <div className="col">
+              <span className="tweet-time">{formatAMPM(reply_created_at)}</span>
+              <span>
+                {" "}
+                <BsDot />{" "}
+              </span>
+              <span className="tweet-time">
+                {formatDayMonth(reply_created_at)}
+              </span>
+            </div>
           </div>
           <div className="row post-content-row-actions">
             <div className="col">
-              <MdRepeat fontSize="medium" />
+              <IconButton className="action-button">
+                <MdRepeat fontSize="medium" />
+              </IconButton>
             </div>
             <div className="col ">
               <IconButton className="like-button" onClick={likeDislike}>
                 {likeClass ? (
-                  <MdFavorite fontSize="medium" style={{ color: "#e0245e" }} />
+                  <MdFavorite fontSize="medium" style={{ color: "#EF1C5C" }} />
                 ) : (
                   <MdFavoriteBorder fontSize="medium"></MdFavoriteBorder>
                 )}
               </IconButton>
             </div>
             <div className="col">
-              <FiShare fontSize="medium" />
+              <IconButton className="action-button">
+                <FiShare fontSize="medium" />
+              </IconButton>
             </div>
           </div>
         </div>

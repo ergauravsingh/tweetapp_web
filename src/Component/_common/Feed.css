@@ -1,12 +1,101 @@
 .like-button:hover {
-  background-color: #e495ae;
-  color: #e0245e;
+  background-color: #fdccdb;
+  color: #ef1c5c;
   border-radius: 55px;
 }
 
+.action-button:hover {
+  background-color: #78c5f8;
+  color: var(--TweetColor);
+  border-radius: 55px;
+}
+
+.post {
+  width: 100%;
+}
+
 .post-body {
-  border-top: 1px solid rgb(191, 191, 191);
-  border-bottom: 1px solid rgb(191, 191, 191);
+  border-bottom: var(--AppBorders);
   padding-top: 2%;
   padding-bottom: 2%;
+  width: 115%;
+}
+
+.post .post-body .post-content {
+  word-break: break-all;
+  padding-right: 4%;
+}
+
+.post .post-body .post-content .post-content-row-username .display-name {
+  width: 92px;
+  height: 27px;
+
+  font-family: "Segoe UI";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 27px;
+  color: #000000;
+}
+.post .post-body .post-content .post-content-row-username .display-icon {
+  font-size: 20px;
+  color: var(--TweetColor);
+  margin-bottom: 1%;
+}
+
+.post .post-body .post-content .post-content-row-username .diplay-username {
+  width: 107px;
+  height: 24px;
+  font-family: "Segoe UI";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #000000;
+  opacity: 0.6;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.post .post-body .post-content .post-content-row-tweet {
+  padding-bottom: 3%;
+  padding-top: 1%;
+  padding-left: 9%;
+}
+
+.post .post-body .post-content .post-content-row-tweet .tweet-message {
+  width: 747px;
+  height: 48px;
+  font-family: "Segoe UI";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #000000;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  padding-bottom: 3%;
+  padding-top: 3%;
+}
+
+.post .post-body .post-content .post-content-row-time {
+  padding-left: 9%;
+}
+.post .post-body .post-content .post-content-row-time .tweet-time {
+  font-family: "Segoe UI";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #000000;
+  opacity: 0.6;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.post .post-body .post-content .post-content-row-actions {
+  padding-left: 9%;
 }

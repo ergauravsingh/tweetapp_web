@@ -45,13 +45,16 @@ const LoginModal = (props) => {
       if (!response.error) {
         setMessage(null);
         localStorage.setItem("token", "Bearer " + response.data?.jwt);
-
+        localStorage.setItem("userName", response.data?.username);
+        localStorage.setItem(
+          "displayName",
+          response.data?.firstName + " " + response.data?.lastName
+        );
         // set store
         props.setUserName(response.data?.username);
         props.setDisplayName(
           response.data?.firstName + " " + response.data?.lastName
         );
-
         history.push("/home");
       } else {
         console.log(response.error);

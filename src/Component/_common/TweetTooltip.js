@@ -35,7 +35,7 @@ export default function TweetTooltip({
 
   return (
     <div>
-      <IconButton onClick={handleClick}>
+      <IconButton onClick={handleClick} className="display-icon">
         <BsThreeDots
           id="basic-button"
           aria-controls={open ? "basic-menu" : undefined}
@@ -55,42 +55,98 @@ export default function TweetTooltip({
       >
         {canBeDeleted === "delete" && !isAReply && (
           <MenuItem onClick={deleteTweetFunction}>
-            <MdDelete /> Delete Tweet
+            <MdDelete
+              style={{
+                fontSize: "1.25rem",
+                color: "rgba(0, 0, 0, 0.54)",
+                marginRight: "7%",
+              }}
+            />{" "}
+            Delete Tweet
           </MenuItem>
         )}
         {canBeDeleted === "delete" && isAReply && (
           <MenuItem onClick={deleteReplyFunction}>
-            <MdDelete /> Delete Reply:
+            <MdDelete
+              style={{
+                fontSize: "1.25rem",
+                color: "rgba(0, 0, 0, 0.54)",
+                marginRight: "7%",
+              }}
+            />{" "}
+            Delete Reply:
           </MenuItem>
         )}
         {canBeDeleted !== "delete" && (
           <MenuItem onClick={handleClose}>
             {" "}
-            <TbUserOff /> Unfollow User
+            <TbUserOff
+              style={{
+                fontSize: "1.25rem",
+                color: "rgba(0, 0, 0, 0.54)",
+                marginRight: "7%",
+              }}
+            />{" "}
+            Unfollow User
           </MenuItem>
         )}
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleClose} style={{ width: "125%" }}>
           {" "}
-          <FaRegListAlt /> Add/Remove from lists
+          <FaRegListAlt
+            style={{
+              fontSize: "1.0rem",
+              color: "rgba(0, 0, 0, 0.54)",
+              marginRight: "7%",
+            }}
+          />{" "}
+          Add/Remove from lists
         </MenuItem>
         <MenuItem onClick={handleClose}>
           {" "}
-          <FaVolumeMute /> Mute
+          <FaVolumeMute
+            style={{
+              fontSize: "1.25rem",
+              color: "rgba(0, 0, 0, 0.54)",
+              marginRight: "7%",
+            }}
+          />{" "}
+          Mute
         </MenuItem>
         {canBeDeleted !== "delete" && (
           <MenuItem onClick={handleClose}>
             {" "}
-            <MdBlock /> Block{" "}
+            <MdBlock
+              style={{
+                fontSize: "1.25rem",
+                color: "rgba(0, 0, 0, 0.54)",
+                marginRight: "7%",
+              }}
+            />{" "}
+            Block{" "}
           </MenuItem>
         )}
         <MenuItem onClick={handleClose}>
           {" "}
-          <ImEmbed2 /> Embed Tweet
+          <ImEmbed2
+            style={{
+              fontSize: "1.25rem",
+              color: "rgba(0, 0, 0, 0.54)",
+              marginRight: "7%",
+            }}
+          />{" "}
+          Embed Tweet
         </MenuItem>
         {canBeDeleted !== "delete" && (
           <MenuItem onClick={handleClose}>
             {" "}
-            <BsFlagFill /> Report Tweet
+            <BsFlagFill
+              style={{
+                fontSize: "1.25rem",
+                color: "rgba(0, 0, 0, 0.54)",
+                marginRight: "7%",
+              }}
+            />{" "}
+            Report Tweet
           </MenuItem>
         )}
       </Menu>

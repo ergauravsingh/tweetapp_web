@@ -1,26 +1,18 @@
 import React from "react";
 import "./Sidebar.css";
-import SidebarOption from "./SidebarOption";
 import SearchIcon from "@mui/icons-material/Search";
-import HomeIcon from "@mui/icons-material/Home";
-import Twitter from "@mui/icons-material/Twitter";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
-import ListAltIcon from "@mui/icons-material/ListAlt";
-import PermIdentityIcon from "@mui/icons-material/PermIdentity";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { Button } from "@mui/material";
-import { useHistory } from "react-router-dom";
+
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import Divider from "@mui/material/Divider";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
-import Typography from "@mui/material/Typography";
+import { FiSettings, FiMoreHorizontal } from "react-icons/fi";
+
+import { FaUserCircle } from "react-icons/fa";
+import { Button } from "@mui/material";
 
 function Sidebar() {
   const Search = styled("div")(({ theme }) => ({
@@ -64,163 +56,162 @@ function Sidebar() {
   }));
 
   return (
-    <div>
-      <Search>
+    <div className="right-sidebar">
+      <Search className="search-box">
         <SearchIconWrapper>
           <SearchIcon />
         </SearchIconWrapper>
         <StyledInputBase
-          placeholder="Search on twitter"
+          placeholder="Search Twitter"
           inputProps={{ "aria-label": "search" }}
         />
       </Search>
-      <YouMightLike></YouMightLike>
-      You Might Like
-      <TopTrends></TopTrends>
+      <div className="trends">
+        <div style={{ marginBottom: "4%" }}>
+          <span className="trends-for-you">Trends for you</span>{" "}
+          <span style={{ marginLeft: "32%" }}>
+            {" "}
+            <FiSettings />{" "}
+          </span>
+        </div>
+        <TrendsForYou style={{ padding: "2%" }}></TrendsForYou>
+      </div>
+      <div
+        style={{
+          marginLeft: "3%",
+          marginTop: "1%",
+          marginBottom: "1%",
+          color: "#1DA1F2",
+        }}
+      >
+        Show more
+      </div>
+      <div className="trends">
+        <div style={{ marginBottom: "4%" }}>
+          <span className="trends-for-you">You Might Like</span>{" "}
+        </div>
+        <YouMightLike style={{ padding: "2%" }}></YouMightLike>
+      </div>
     </div>
   );
 }
 export default Sidebar;
 
-function YouMightLike() {
-  return (
-    <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-        </ListItemAvatar>
-        <ListItemText
-          primary="Brunch this weekend?"
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: "inline" }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                Ali Connors
-              </Typography>
-              {" — I'll be in your neighborhood doing errands this…"}
-            </React.Fragment>
-          }
-        />
-      </ListItem>
-      <Divider variant="inset" component="li" />
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-        </ListItemAvatar>
-        <ListItemText
-          primary="Summer BBQ"
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: "inline" }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                to Scott, Alex, Jennifer
-              </Typography>
-              {" — Wish I could come, but I'm out of town this…"}
-            </React.Fragment>
-          }
-        />
-      </ListItem>
-      <Divider variant="inset" component="li" />
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-        </ListItemAvatar>
-        <ListItemText
-          primary="Oui Oui"
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: "inline" }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                Sandra Adams
-              </Typography>
-              {" — Do you have Paris recommendations? Have you ever…"}
-            </React.Fragment>
-          }
-        />
-      </ListItem>
-    </List>
-  );
+function TrendsForYou() {
+  return [1, 2, 3].map(() => {
+    return (
+      <div
+        style={{
+          width: "100%",
+          maxWidth: 360,
+          borderBottom: "1px solid grey",
+        }}
+      >
+        <span className="trending-in-germany">Trending in germany</span>
+        <span style={{ marginLeft: "34%" }}>
+          <FiMoreHorizontal />
+        </span>
+        <br />
+        <span className="revolution">Revolution</span> <br />
+        <span className="no-of-tweets">50.4K Tweets</span>
+      </div>
+    );
+  });
 }
 
-function TopTrends() {
+function YouMightLike() {
   return (
-    <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
-      <ListItem alignItems="flex-start">
+    <List sx={{ width: "100%", maxWidth: 360 }}>
+      <ListItem style={{ padding: "0px", borderBottom: "1px solid grey" }}>
         <ListItemAvatar>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+          <Avatar>
+            <FaUserCircle
+              className="post__avatar"
+              style={{
+                fontSize: "40px",
+                color: "lightgrey",
+                background: "white",
+              }}
+            />
+          </Avatar>
         </ListItemAvatar>
-        <ListItemText
-          primary="Brunch this weekend?"
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: "inline" }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                Ali Connors
-              </Typography>
-              {" — I'll be in your neighborhood doing errands this…"}
-            </React.Fragment>
-          }
-        />
+        <div className="col-6" style={{ padding: "0px" }}>
+          <ListItemText>
+            <span className="you-might-like-username">Ratan N. Tata</span>{" "}
+            <br />
+            <span className="you-might-like-userid">@tata_sons</span>
+          </ListItemText>
+        </div>
+        <div className="col" style={{ padding: "0px" }}>
+          <Button
+            type="submit"
+            className="black-follow-button"
+            style={{ textTransform: "none" }}
+            variant="contained"
+          >
+            Follow
+          </Button>
+        </div>
       </ListItem>
-      <Divider variant="inset" component="li" />
-      <ListItem alignItems="flex-start">
+      <ListItem style={{ padding: "0px", borderBottom: "1px solid grey" }}>
         <ListItemAvatar>
-          <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
+          <Avatar>
+            <FaUserCircle
+              className="post__avatar"
+              style={{
+                fontSize: "40px",
+                color: "lightgrey",
+                background: "white",
+              }}
+            />
+          </Avatar>
         </ListItemAvatar>
-        <ListItemText
-          primary="Summer BBQ"
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: "inline" }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                to Scott, Alex, Jennifer
-              </Typography>
-              {" — Wish I could come, but I'm out of town this…"}
-            </React.Fragment>
-          }
-        />
+        <div className="col-6" style={{ padding: "0px" }}>
+          <ListItemText>
+            <span className="you-might-like-username">Bill Gates</span> <br />
+            <span className="you-might-like-userid">@microsoft_founder</span>
+          </ListItemText>
+        </div>
+        <div className="col" style={{ padding: "0px" }}>
+          <Button
+            type="submit"
+            className="black-follow-button"
+            style={{ textTransform: "none" }}
+            variant="contained"
+          >
+            Follow
+          </Button>
+        </div>
       </ListItem>
-      <Divider variant="inset" component="li" />
-      <ListItem alignItems="flex-start">
+      <ListItem style={{ padding: "0px", borderBottom: "1px solid grey" }}>
         <ListItemAvatar>
-          <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
+          <Avatar>
+            <FaUserCircle
+              className="post__avatar"
+              style={{
+                fontSize: "40px",
+                color: "lightgrey",
+                background: "white",
+              }}
+            />
+          </Avatar>
         </ListItemAvatar>
-        <ListItemText
-          primary="Oui Oui"
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: "inline" }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                Sandra Adams
-              </Typography>
-              {" — Do you have Paris recommendations? Have you ever…"}
-            </React.Fragment>
-          }
-        />
+        <div className="col-6" style={{ padding: "0px" }}>
+          <ListItemText>
+            <span className="you-might-like-username">Jeff Bezos</span> <br />
+            <span className="you-might-like-userid">@a_to_z</span>
+          </ListItemText>
+        </div>
+        <div className="col" style={{ padding: "0px" }}>
+          <Button
+            type="submit"
+            className="black-follow-button"
+            style={{ textTransform: "none" }}
+            variant="contained"
+          >
+            Follow
+          </Button>
+        </div>
       </ListItem>
     </List>
   );

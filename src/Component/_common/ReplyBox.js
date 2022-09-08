@@ -17,7 +17,10 @@ function ReplyBox({ tweet_id, createReply, getAllReplies }) {
     }
   };
   return (
-    <div className="tweetBox">
+    <div
+      className="tweetBox"
+      style={{ backgroundColor: "#b1aaaa38", padding: "2%" }}
+    >
       <form>
         <div className="row form-row">
           <div className="col-1 avatar-col">
@@ -28,14 +31,24 @@ function ReplyBox({ tweet_id, createReply, getAllReplies }) {
           </div>
           <div className="col-8">
             <TextField
+              style={{ background: "white" }}
               fullWidth
               label="Tweet your reply"
               id="reply"
               onChange={(event) => setReplyMessage(event.target.value)}
             />
           </div>
-          <div className="col">
-            <Button onClick={createReplyFunction} type="submit">
+          <div
+            className="col"
+            style={{ textAlign: "center", paddingTop: "1%" }}
+          >
+            <Button
+              onClick={createReplyFunction}
+              type="submit"
+              className="blue-btn tweet-create-button"
+              style={{ textTransform: "none" }}
+              variant="contained"
+            >
               Reply
             </Button>
           </div>

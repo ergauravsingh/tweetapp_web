@@ -45,7 +45,7 @@ const ReplyModal = ({ feed, userName }) => {
 
   return (
     <div>
-      <IconButton onClick={handleClickOpen}>
+      <IconButton onClick={handleClickOpen} className="action-button">
         <BsChat fontSize="medium" />
       </IconButton>
 
@@ -66,7 +66,7 @@ const ReplyModal = ({ feed, userName }) => {
           </div>
 
           <DialogContent>
-            <div className="feed-in-reply">
+            <div className="feed-in-reply" style={{ width: "90%" }}>
               <Feed
                 tweet_id={feed.tweet_id}
                 tweet_message={feed.tweet_message}

@@ -34,36 +34,50 @@ function TweetBox({ createTweet }) {
                 className="col-12"
                 variant="standard"
                 multiline
-                minRows={4}
+                minRows={2.8}
                 onChange={(event) => setTweetMessage(event.target.value)}
                 type="text"
                 placeholder="What's happening?"
               />
             </div>
-
+            <span
+              style={{
+                fontSize: "12px",
+                marginLeft: "80%",
+                fontWeight: 300,
+              }}
+            >
+              ({tweetMessage ? tweetMessage.length : 0}/3000 characters)
+            </span>
             <div className="row">
               <div className="col-1">
                 <IconButton>
-                  <ImFilePicture />
+                  <ImFilePicture className="tweetbox-icons" />
                 </IconButton>
               </div>
               <div className="col-1">
                 <IconButton>
-                  <AiOutlineBarChart />
+                  <AiOutlineBarChart className="tweetbox-icons" />
                 </IconButton>
               </div>
               <div className="col-1">
                 <IconButton>
-                  <BsEmojiSmile />
+                  <BsEmojiSmile className="tweetbox-icons" />
                 </IconButton>
               </div>
               <div className="col-7">
                 <IconButton>
-                  <BiCalendar />
+                  <BiCalendar className="tweetbox-icons" />
                 </IconButton>
               </div>
               <div className="col-2">
-                <Button onClick={createTweetFunction} type="submit">
+                <Button
+                  className="blue-btn tweet-create-button"
+                  style={{ textTransform: "none" }}
+                  variant="contained"
+                  onClick={createTweetFunction}
+                  type="submit"
+                >
                   Tweet
                 </Button>
               </div>
