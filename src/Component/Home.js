@@ -5,7 +5,6 @@ import { getConnectedComponent } from "../store";
 import LeftSideBar from "./_common/LeftSideBar";
 import RightSideBar from "./_common/RightSideBar";
 import Feeds from "./_common/Feeds";
-import { Container } from "@mui/material";
 import { TweetServices } from "../services/TweetServices";
 import TweetBox from "./_common/TweetBox";
 import TweetAppBar from "./_common/AppBar";

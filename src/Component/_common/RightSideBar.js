@@ -98,9 +98,10 @@ function Sidebar() {
 export default Sidebar;
 
 function TrendsForYou() {
-  return [1, 2, 3].map(() => {
+  return [1, 2, 3].map((el) => {
     return (
       <div
+        key={el}
         style={{
           width: "100%",
           maxWidth: 360,
