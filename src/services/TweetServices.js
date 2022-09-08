@@ -1,6 +1,7 @@
 import { createRequest, HTTP_METHODS } from "./ServiceInvoker";
+import { BASE_URL } from "../environmentConstants";
 
-const baseUrl = "http://localhost:9085/api/v1.0/tweets";
+const baseUrl = BASE_URL;
 
 export const TweetServices = {
   saveUserAPI(user) {

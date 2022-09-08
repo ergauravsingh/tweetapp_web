@@ -1,6 +1,7 @@
 import axios from "axios";
+import { BASE_URL } from "../environmentConstants";
 
-const baseURL = "http://localhost:9085/api/v1.0/tweets";
+const baseURL = BASE_URL;
 
 const TweetAxios = axios.create({ baseURL: baseURL });
 
