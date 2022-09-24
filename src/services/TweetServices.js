@@ -75,4 +75,18 @@ export const TweetServices = {
       return { error: "[createReplyAPI] FAILED" };
     }
   },
+
+  changePasswordAPI(user, config) {
+    if (user) {
+      return createRequest(
+        HTTP_METHODS.POST,
+        baseUrl + "/change_password",
+        user,
+        config
+      );
+    } else {
+      console.error("Change Password Api Failed");
+      return { error: "[changePasswordAPI] FAILED" };
+    }
+  },
 };

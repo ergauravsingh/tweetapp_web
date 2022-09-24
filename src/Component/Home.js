@@ -102,6 +102,22 @@ const Home = ({
     }
   };
 
+  const changePassword = async (password) => {
+    let user = {
+      password: password,
+      firstName: localStorage.getItem("firstName"),
+      lastName: localStorage.getItem("lastName"),
+    };
+    const response = await TweetServices.changePasswordAPI(user, {
+      headers: { Authorization: token },
+    });
+    if (!response.error) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   useEffect(() => {
     getAllTweets();
   }, [token]);
@@ -118,7 +134,10 @@ const Home = ({
           </div>
           <div className="col col-sm-7 feeds-center-part">
             <div className="row app-bar">
-              <TweetAppBar logOut={logOut}></TweetAppBar>
+              <TweetAppBar
+                logOut={logOut}
+                changePassword={changePassword}
+              ></TweetAppBar>
             </div>
             <div className="row tweet-box">
               <div className="col-12">

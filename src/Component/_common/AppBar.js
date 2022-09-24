@@ -1,13 +1,16 @@
 import * as React from "react";
 import { getConnectedComponent } from "../../store";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Badge from "@mui/material/Badge";
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
+import ChangePasswordModal from "./ChangePasswordModal";
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  Typography,
+  Badge,
+  MenuItem,
+  Menu,
+} from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
@@ -19,7 +22,7 @@ import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 
-const TweetAppBar = ({ displayName, logOut }) => {
+const TweetAppBar = ({ displayName, logOut, changePassword }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -76,6 +79,9 @@ const TweetAppBar = ({ displayName, logOut }) => {
         </ListItemIcon>
         Settings
       </MenuItem>
+
+      <ChangePasswordModal changePassword={changePassword} logOut={logOut} />
+
       <MenuItem onClick={logOut}>
         <ListItemIcon>
           <Logout fontSize="small" />

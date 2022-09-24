@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router";
-import { getConnectedComponent } from "../store";
-import { TweetServices } from "../services/TweetServices";
+import { getConnectedComponent } from "../../store";
 import { MdClose } from "react-icons/md";
+import LockResetIcon from "@mui/icons-material/LockReset";
+import { MenuItem } from "@mui/material";
+import ListItemIcon from "@mui/material/ListItemIcon";
+
 import {
   Fab,
+  IconButton,
   Button,
   TextField,
   Dialog,
@@ -13,51 +16,39 @@ import {
   DialogContentText,
 } from "@mui/material";
 
-const LoginModal = (props) => {
-  const history = useHistory();
+export default function ChangePasswordModal({ changePassword, logOut }) {
   const [open, setOpen] = useState(false);
-
-  const [userName, setUserName] = useState(null);
   const [password, setPassword] = useState(null);
+  const [confirmpassword, setConfirmpassword] = useState(null);
 
   const [error, setError] = useState(null);
+
   const [message, setMessage] = useState(null);
 
   const reset = () => {
-    setUserName(null);
     setPassword(null);
+    setConfirmpassword(null);
     setError(null);
     setMessage(null);
   };
 
   const handleValidation = () => {
-    if (!userName || !password) {
+    if (!password || !password) {
       setError("Field cannot be blank");
+      return false;
+    } else if (password !== confirmpassword) {
+      setError("Passwords do not match");
       return false;
     }
     return true;
   };
 
-  const loginUser = async () => {
+  const changePWD = async () => {
     if (handleValidation()) {
-      let user = { userName, password };
-      const response = await TweetServices.loginAPI(user);
+      const response = await changePassword(password);
       if (!response.error) {
         setMessage(null);
-        localStorage.setItem("token", "Bearer " + response.data?.jwt);
-        localStorage.setItem("userName", response.data?.username);
-        localStorage.setItem("firstName", response.data?.firstName);
-        localStorage.setItem("lastName", response.data?.lastName);
-        localStorage.setItem(
-          "displayName",
-          response.data?.firstName + " " + response.data?.lastName
-        );
-        // set store
-        props.setUserName(response.data?.username);
-        props.setDisplayName(
-          response.data?.firstName + " " + response.data?.lastName
-        );
-        history.push("/home");
+        logOut();
       } else {
         console.log(response.error);
         if (typeof response.error === "string") setMessage(response.error);
@@ -65,7 +56,7 @@ const LoginModal = (props) => {
     }
   };
 
-  const handleClickOpen = () => {
+  const handleClickOpen = async () => {
     setOpen(true);
   };
   const handleClose = () => {
@@ -75,15 +66,12 @@ const LoginModal = (props) => {
 
   return (
     <div>
-      <Button
-        variant="outlined"
-        className="white-btn landing-content-bottom"
-        style={{ textTransform: "none" }}
-        onClick={handleClickOpen}
-      >
-        Log in
-      </Button>
-
+      <MenuItem onClick={handleClickOpen}>
+        <ListItemIcon>
+          <LockResetIcon fontSize="small" />
+        </ListItemIcon>
+        Change Password
+      </MenuItem>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -112,25 +100,29 @@ const LoginModal = (props) => {
                 {message}
               </span>
               <DialogContentText className="create-your-account">
-                Login to your account
+                Change your password
               </DialogContentText>
 
               <div className="sign-up-form">
                 <div className="form-group">
                   <TextField
                     className="input-box"
-                    id="username"
-                    label="User Id"
+                    id="password"
+                    label="Password"
                     variant="outlined"
-                    onChange={(e) => setUserName(e.target.value)}
+                    type="password"
+                    onChange={(e) => setPassword(e.target.value)}
                     error={
-                      error === "Field cannot be blank" &&
-                      (!userName || userName === "")
+                      (error === "Field cannot be blank" &&
+                        (!password || password === "")) ||
+                      error === "Passwords do not match"
                     }
                     helperText={
                       error === "Field cannot be blank" &&
-                      (!userName || userName === "")
+                      (!password || password === "")
                         ? "Field cannot be blank"
+                        : error === "Passwords do not match"
+                        ? "Passwords do not match"
                         : null
                     }
                   />
@@ -138,19 +130,22 @@ const LoginModal = (props) => {
                 <div className="form-group">
                   <TextField
                     className="input-box"
-                    id="password"
-                    label="Password"
+                    id="confirmpassword"
+                    label="Confirm Password"
                     type="password"
                     variant="outlined"
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={(e) => setConfirmpassword(e.target.value)}
                     error={
-                      error === "Field cannot be blank" &&
-                      (!password || password === "")
+                      (error === "Field cannot be blank" &&
+                        (!confirmpassword || confirmpassword === "")) ||
+                      error === "Passwords do not match"
                     }
                     helperText={
                       error === "Field cannot be blank" &&
-                      (!password || password === "")
+                      (!confirmpassword || confirmpassword === "")
                         ? "Field cannot be blank"
+                        : error === "Passwords do not match"
+                        ? "Passwords do not match"
                         : null
                     }
                   />
@@ -164,14 +159,12 @@ const LoginModal = (props) => {
             variant="contained"
             className="create-account-btn"
             style={{ textTransform: "none" }}
-            onClick={loginUser}
+            onClick={changePWD}
           >
-            Login
+            Change Password Securely
           </Button>
         </DialogActions>
       </Dialog>
     </div>
   );
-};
-
-export default getConnectedComponent(LoginModal);
+}
