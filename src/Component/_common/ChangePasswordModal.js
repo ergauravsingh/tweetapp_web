@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { getConnectedComponent } from "../../store";
 import { MdClose } from "react-icons/md";
 import LockResetIcon from "@mui/icons-material/LockReset";
 import { MenuItem } from "@mui/material";
@@ -7,7 +6,6 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 
 import {
   Fab,
-  IconButton,
   Button,
   TextField,
   Dialog,
