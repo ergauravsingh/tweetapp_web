@@ -32,7 +32,7 @@ export default function LandingView() {
                 <FaTwitter className="landing-twitter-logo" />
                 <br /> <br />{" "}
                 <span className="see-whats-happening">
-                  See what’s happening in <br /> the world right now
+                  See what’s not happening in <br /> the world right now
                 </span>
                 <br />
                 <br />
