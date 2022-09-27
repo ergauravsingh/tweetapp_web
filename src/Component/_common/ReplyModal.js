@@ -56,6 +56,7 @@ const ReplyModal = ({ feed, userName }) => {
           className="sign-up-dialog-box"
           fullWidth
           maxWidth="md"
+          style={{ overflowX: "hidden" }}
         >
           <div className="row">
             <div className="col-1">
@@ -66,7 +67,10 @@ const ReplyModal = ({ feed, userName }) => {
           </div>
 
           <DialogContent>
-            <div className="feed-in-reply" style={{ width: "90%" }}>
+            <div
+              className="feed-in-reply"
+              style={{ width: "90%", overflowX: "hidden" }}
+            >
               <Feed
                 tweet_id={feed.tweet_id}
                 tweet_message={feed.tweet_message}
@@ -81,7 +85,7 @@ const ReplyModal = ({ feed, userName }) => {
                 deleteTweet={feed.deleteTweet}
               />
             </div>
-            <div className="replies-in-reply">
+            <div className="replies-in-reply" style={{ overflowX: "hidden" }}>
               {repliesList?.map((reply) => (
                 <Reply
                   key={reply.replyId}

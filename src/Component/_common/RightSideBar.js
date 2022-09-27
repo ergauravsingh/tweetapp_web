@@ -105,7 +105,7 @@ function TrendsForYou() {
         style={{
           width: "100%",
           maxWidth: 360,
-          borderBottom: "1px solid grey",
+          borderBottom: "1px solid #ccc",
         }}
       >
         <span className="trending-in-germany">Trending in germany</span>
@@ -123,7 +123,7 @@ function TrendsForYou() {
 function YouMightLike() {
   return (
     <List sx={{ width: "100%", maxWidth: 360 }}>
-      <ListItem style={{ padding: "0px", borderBottom: "1px solid grey" }}>
+      <ListItem style={{ padding: "0px", borderBottom: "1px solid #ccc" }}>
         <ListItemAvatar>
           <Avatar>
             <FaUserCircle
@@ -184,7 +184,7 @@ function YouMightLike() {
           </Button>
         </div>
       </ListItem>
-      <ListItem style={{ padding: "0px", borderBottom: "1px solid grey" }}>
+      <ListItem style={{ padding: "0px", borderBottom: "1px solid #ccc" }}>
         <ListItemAvatar>
           <Avatar>
             <FaUserCircle

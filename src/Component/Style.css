@@ -70,6 +70,7 @@
 }
 .sign-up-dialog-box {
   min-height: 400px !important;
+  overflow-x: hidden !important;
 }
 .sign-up-dialog-box .sign-up-close-btn {
   background-color: #e0e0e000;
@@ -141,6 +142,7 @@
 
 .feeds-center-container .home-page .feeds-center-part {
   width: 51%;
+  height: 100%;
 }
 
 .feeds-center-container .home-page .feeds-center-part .tweet-box {

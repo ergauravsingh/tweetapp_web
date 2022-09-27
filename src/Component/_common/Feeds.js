@@ -21,7 +21,8 @@ const Feeds = ({
         <List
           style={{
             maxHeight: 465,
-            overflow: "auto",
+            overflowY: "auto",
+            overflowX: "hidden",
             width: "107%",
           }}
         >
